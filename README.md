@@ -1,6 +1,6 @@
 # MCPeer 🚀
 
-![MCPeer Logo](./logo.png) <!-- Place your logo here -->
+![MCPeer Logo](./public/images/logo-large.svg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)](https://laravel.com)
