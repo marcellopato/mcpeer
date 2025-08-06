@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcpeer_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - mcpeer_network
+    depends_on:
+      - db
+      - redis
+
+  webserver:
+    image: nginx:alpine
+    container_name: mcpeer_webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/:/etc/nginx/conf.d/
+    networks:
+      - mcpeer_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: mcpeer_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: mcpeer
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: mcpeer
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3307:3306"
+    networks:
+      - mcpeer_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: mcpeer_redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    networks:
+      - mcpeer_network
+
+networks:
+  mcpeer_network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
