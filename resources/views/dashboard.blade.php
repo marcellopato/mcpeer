@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('actions.create') }}" class="text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline">
+                        <a href="{{ route('mcp.servers') }}" class="text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline">
                             Criar primeira ação →
                         </a>
                     </div>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('servers.index') }}" class="text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline">
+                        <a href="{{ route('mcp.servers') }}" class="text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline">
                             Ver servidores →
                         </a>
                     </div>
@@ -102,7 +102,7 @@
             <div class="card p-6">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Ações Rápidas</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <a href="{{ route('actions.create') }}" 
+                    <a href="{{ route('mcp.servers') }}" 
                        class="block p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                         <div class="text-center">
                             <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 48 48">
@@ -113,7 +113,7 @@
                         </div>
                     </a>
                     
-                    <a href="{{ route('servers.create') }}" 
+                    <a href="{{ route('mcp.servers') }}" 
                        class="block p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                         <div class="text-center">
                             <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 48 48">
