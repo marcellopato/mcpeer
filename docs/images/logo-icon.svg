@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#374151" stroke="#FCD34D" stroke-width="2"/>
+  
+  <!-- Central hub -->
+  <circle cx="32" cy="32" r="8" fill="#FCD34D"/>
+  
+  <!-- Connected nodes -->
+  <circle cx="20" cy="20" r="4" fill="#9CA3AF"/>
+  <circle cx="44" cy="20" r="4" fill="#9CA3AF"/>
+  <circle cx="20" cy="44" r="4" fill="#9CA3AF"/>
+  <circle cx="44" cy="44" r="4" fill="#9CA3AF"/>
+  
+  <!-- Connection lines -->
+  <line x1="32" y1="32" x2="20" y2="20" stroke="#FCD34D" stroke-width="2" opacity="0.7"/>
+  <line x1="32" y1="32" x2="44" y2="20" stroke="#FCD34D" stroke-width="2" opacity="0.7"/>
+  <line x1="32" y1="32" x2="20" y2="44" stroke="#FCD34D" stroke-width="2" opacity="0.7"/>
+  <line x1="32" y1="32" x2="44" y2="44" stroke="#FCD34D" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Small letter "M" in center -->
+  <text x="32" y="38" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">M</text>
+</svg>

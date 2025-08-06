@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCPeer - Visual MCP Server Management Platform</title>
+    <meta name="description" content="MCPeer is a visual platform for creating, configuring, and managing Model Context Protocol (MCP) servers in a simple, visual, and standardized way.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marcellopato.github.io/mcpeer/">
+    <meta property="og:title" content="MCPeer - Visual MCP Server Management Platform">
+    <meta property="og:description" content="Create and manage MCP servers visually with Laravel, Docker, and TailwindCSS">
+    <meta property="og:image" content="https://marcellopato.github.io/mcpeer/images/logo-large.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://marcellopato.github.io/mcpeer/">
+    <meta property="twitter:title" content="MCPeer - Visual MCP Server Management Platform">
+    <meta property="twitter:description" content="Create and manage MCP servers visually with Laravel, Docker, and TailwindCSS">
+    <meta property="twitter:image" content="https://marcellopato.github.io/mcpeer/images/logo-large.svg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mcpeer: {
+                            yellow: '#FCD34D',
+                            'gray-dark': '#374151',
+                            'gray-light': '#9CA3AF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+        }
+        .code-bg {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+        }
+        .hero-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300" x-data="{ darkMode: false }" x-init="darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches" :class="{ 'dark': darkMode }">
+    
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="./images/logo-icon.svg" alt="MCPeer" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">MCPeer</span>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-mcpeer-yellow transition-colors">Features</a>
+                    <a href="#demo" class="text-gray-600 dark:text-gray-300 hover:text-mcpeer-yellow transition-colors">Demo</a>
+                    <a href="#tech-stack" class="text-gray-600 dark:text-gray-300 hover:text-mcpeer-yellow transition-colors">Tech Stack</a>
+                    <a href="https://github.com/marcellopato/mcpeer" target="_blank" class="bg-mcpeer-yellow text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-yellow-400 transition-colors">
+                        GitHub
+                    </a>
+                </div>
+                
+                <!-- Dark Mode Toggle -->
+                <button @click="darkMode = !darkMode" class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <svg x-show="!darkMode" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg x-show="darkMode" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="hero-animation">
+                <img src="./images/logo-large.svg" alt="MCPeer Logo" class="h-20 mx-auto mb-8">
+            </div>
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                Visual MCP Server Management
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+                Create, configure, and manage <strong>Model Context Protocol (MCP)</strong> servers in a simple, visual, and standardized way using Laravel, Docker, and TailwindCSS.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://github.com/marcellopato/mcpeer" target="_blank" class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors">
+                    Get Started
+                </a>
+                <a href="#demo" class="bg-white text-gray-900 px-8 py-3 rounded-md font-medium border border-gray-900 hover:bg-gray-50 transition-colors">
+                    View Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Why Choose MCPeer?</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Streamline your MCP implementation with our visual, standardized approach
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Visual Configuration -->
+                <div class="text-center p-8 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-mcpeer-yellow rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Visual Configuration</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Configure MCP actions (query, mutation, stream) through an intuitive visual interface - no complex manual coding required.
+                    </p>
+                </div>
+                
+                <!-- Auto Generation -->
+                <div class="text-center p-8 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-mcpeer-yellow rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Auto Generation</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Automatically generates PHP backend code and Docker configuration ready for deployment.
+                    </p>
+                </div>
+                
+                <!-- Docker Ready -->
+                <div class="text-center p-8 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-mcpeer-yellow rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Docker Ready</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Complete containerized environment with MySQL, Redis, and Nginx for production-ready deployment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">See MCPeer in Action</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Experience the power of visual MCP server configuration
+                </p>
+            </div>
+            
+            <!-- Demo Interface Mockup -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                <!-- Mock Browser Bar -->
+                <div class="bg-gray-200 dark:bg-gray-700 px-4 py-2 flex items-center space-x-2">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div class="flex-1 mx-4 bg-white dark:bg-gray-600 rounded px-3 py-1 text-sm text-gray-600 dark:text-gray-300">
+                        localhost:8080/mcpeer/dashboard
+                    </div>
+                </div>
+                
+                <!-- Mock Dashboard -->
+                <div class="p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- MCP Actions Panel -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">MCP Actions</h3>
+                            <div class="space-y-4">
+                                <div class="code-bg p-4 rounded-lg">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-mcpeer-yellow font-mono">query</span>
+                                        <span class="text-green-400 text-sm">✓ Active</span>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">get_user_profile</p>
+                                </div>
+                                <div class="code-bg p-4 rounded-lg">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-mcpeer-yellow font-mono">mutation</span>
+                                        <span class="text-green-400 text-sm">✓ Active</span>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">create_task</p>
+                                </div>
+                                <div class="code-bg p-4 rounded-lg">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-mcpeer-yellow font-mono">stream</span>
+                                        <span class="text-yellow-400 text-sm">⏳ Testing</span>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">live_notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Server Status Panel -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Server Status</h3>
+                            <div class="bg-green-50 dark:bg-green-900 p-6 rounded-lg border border-green-200 dark:border-green-700">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                    <span class="text-green-800 dark:text-green-200 font-medium">Server Online</span>
+                                </div>
+                                <div class="space-y-2 text-sm text-green-700 dark:text-green-300">
+                                    <div class="flex justify-between">
+                                        <span>Uptime:</span>
+                                        <span>24h 15m</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Requests:</span>
+                                        <span>1,247</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Response Time:</span>
+                                        <span>45ms avg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Built with Modern Tech</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    MCPeer uses industry-leading technologies for reliability and performance
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <!-- Laravel -->
+                <div class="p-6">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center">
+                        <span class="text-2xl font-bold text-red-600 dark:text-red-400">L</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Laravel 10.x</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">PHP Framework</p>
+                </div>
+                
+                <!-- TailwindCSS -->
+                <div class="p-6">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                        <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">T</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">TailwindCSS</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Utility-First CSS</p>
+                </div>
+                
+                <!-- Docker -->
+                <div class="p-6">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                        <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">🐳</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Docker</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Containerization</p>
+                </div>
+                
+                <!-- Alpine.js -->
+                <div class="p-6">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                        <span class="text-2xl font-bold text-green-600 dark:text-green-400">A</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Alpine.js</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Reactive Components</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-gray-700 mb-8">
+                Join the MCPeer community and start building MCP servers visually today!
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://github.com/marcellopato/mcpeer" target="_blank" class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors">
+                    ⭐ Star on GitHub
+                </a>
+                <a href="https://github.com/marcellopato/mcpeer/fork" target="_blank" class="bg-white text-gray-900 px-8 py-3 rounded-md font-medium border border-gray-900 hover:bg-gray-50 transition-colors">
+                    🍴 Fork & Contribute
+                </a>
+            </div>
+            
+            <!-- GitHub Stats -->
+            <div class="mt-12 flex justify-center space-x-8 text-gray-700">
+                <div class="text-center">
+                    <div class="text-2xl font-bold">100+</div>
+                    <div class="text-sm">Stars</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold">25+</div>
+                    <div class="text-sm">Forks</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold">10+</div>
+                    <div class="text-sm">Contributors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="./images/logo-icon.svg" alt="MCPeer" class="h-8 w-8">
+                        <span class="text-xl font-bold">MCPeer</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Making Model Context Protocol adoption simple and visual for everyone. 
+                        Built with ❤️ by the MCPeer community.
+                    </p>
+                </div>
+                
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold mb-4">Project</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://github.com/marcellopato/mcpeer" class="hover:text-mcpeer-yellow transition-colors">GitHub</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/wiki" class="hover:text-mcpeer-yellow transition-colors">Documentation</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/releases" class="hover:text-mcpeer-yellow transition-colors">Releases</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/discussions" class="hover:text-mcpeer-yellow transition-colors">Discussions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Community -->
+                <div>
+                    <h4 class="font-bold mb-4">Community</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://github.com/marcellopato/mcpeer/issues" class="hover:text-mcpeer-yellow transition-colors">Issues</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/pulls" class="hover:text-mcpeer-yellow transition-colors">Pull Requests</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/blob/main/CONTRIBUTING.md" class="hover:text-mcpeer-yellow transition-colors">Contributing</a></li>
+                        <li><a href="https://github.com/marcellopato/mcpeer/blob/main/LICENSE" class="hover:text-mcpeer-yellow transition-colors">License</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 MCPeer. Released under MIT License. Made with ❤️ by the community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

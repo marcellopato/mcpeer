@@ -6,6 +6,9 @@
 [![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com)
+[![CI](https://github.com/marcellopato/mcpeer/actions/workflows/ci.yml/badge.svg)](https://github.com/marcellopato/mcpeer/actions/workflows/ci.yml)
+[![Pages](https://github.com/marcellopato/mcpeer/actions/workflows/pages.yml/badge.svg)](https://github.com/marcellopato/mcpeer/actions/workflows/pages.yml)
+[![Demo](https://img.shields.io/badge/Demo-Live-green.svg)](https://marcellopato.github.io/mcpeer)
 
 ## What is MCPeer?
 
@@ -62,6 +65,9 @@ Built with a modern interface using **PHP + TailwindCSS** and containerized with
 
 1. **Clone the repository:**
 
+   ```bash
+   git clone https://github.com/marcellopato/mcpeer.git
+   cd mcpeer
    ```
 
 2. **Set up environment variables:**
@@ -232,6 +238,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ by the MCPeer community**
 
-*MCPeer - Making MCP adoption simple and visual for everyone*bash
-   git clone https://github.com/marcellopato/mcpeer.git
-   cd mcpeer
+*MCPeer - Making MCP adoption simple and visual for everyone*
