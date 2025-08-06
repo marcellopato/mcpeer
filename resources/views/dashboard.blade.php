@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">0</div>
+                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">{{ $stats['mcp_actions'] }}</div>
                             <div class="text-sm text-gray-500 dark:text-gray-400">MCP Actions</div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">0</div>
+                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">{{ $stats['active_servers'] }}</div>
                             <div class="text-sm text-gray-500 dark:text-gray-400">Servidores Ativos</div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">0</div>
+                            <div class="text-2xl font-semibold text-gray-900 dark:text-white">{{ $stats['integrations'] }}</div>
                             <div class="text-sm text-gray-500 dark:text-gray-400">Integrações</div>
                         </div>
                     </div>

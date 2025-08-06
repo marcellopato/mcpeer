@@ -26,6 +26,10 @@ class MCPActionManager extends Component
     public $requires_auth = false;
     public $auth_type = 'none';
     public $timeout = 30;
+    
+    // JSON representation fields
+    public $parametersJson = '';
+    public $authJson = '';
 
     // UI state
     public $showCodePreview = false;
@@ -62,6 +66,16 @@ class MCPActionManager extends Component
     {
         $this->validate();
 
+        // Parse JSON fields
+        if ($this->parametersJson) {
+            try {
+                $this->parameters = json_decode($this->parametersJson, true);
+            } catch (\Exception $e) {
+                $this->addError('parametersJson', 'Invalid JSON format');
+                return;
+            }
+        }
+
         $data = [
             'mcp_server_id' => $this->server->id,
             'name' => $this->name,
@@ -96,6 +110,7 @@ class MCPActionManager extends Component
         $this->method = $action->method;
         $this->endpoint = $action->endpoint;
         $this->parameters = $action->parameters ?? [];
+        $this->parametersJson = json_encode($action->parameters ?? [], JSON_PRETTY_PRINT);
         $this->headers = $action->headers ?? [];
         $this->requires_auth = $action->requires_auth;
         $this->auth_type = $action->auth_type;
@@ -152,12 +167,14 @@ class MCPActionManager extends Component
     {
         $this->reset([
             'editingAction', 'name', 'description', 'type', 'method', 
-            'endpoint', 'parameters', 'headers', 'requires_auth', 
-            'auth_type', 'timeout'
+            'endpoint', 'parameters', 'parametersJson', 'headers', 'requires_auth', 
+            'auth_type', 'authJson', 'timeout'
         ]);
         $this->type = 'query';
         $this->method = 'POST';
         $this->auth_type = 'none';
         $this->timeout = 30;
+        $this->parametersJson = '';
+        $this->authJson = '';
     }
 }
