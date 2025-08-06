@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Simple test route
+Route::get('/test', function () {
+    return response()->json(['message' => 'MCPeer API is working', 'time' => now()]);
+});
+
 // Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
