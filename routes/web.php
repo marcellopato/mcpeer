@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Simple test route
+Route::get('/test', function () {
+    return 'MCPeer está funcionando!';
+});
+
 // Backend API test route (working)
 Route::get('/api-test', function () {
     return response()->json([
@@ -34,11 +39,11 @@ Route::get('/api-test', function () {
 });
 
 // Dashboard
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['web']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // MCP Livewire Routes  
-Route::get('/mcp/servers', MCPServerManager::class)->name('mcp.servers')->middleware(['web']);
-Route::get('/mcp/servers/{server}/actions', MCPActionManager::class)->name('mcp.server.actions')->middleware(['web']);
+Route::get('/mcp/servers', MCPServerManager::class)->name('mcp.servers');
+Route::get('/mcp/servers/{server}/actions', MCPActionManager::class)->name('mcp.server.actions');
 
 // Legacy MCP Routes (keeping for API compatibility)
 Route::resource('actions', MCPActionController::class);
