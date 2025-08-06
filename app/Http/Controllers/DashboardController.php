@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MCPServer;
+use App\Models\MCPAction;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,10 +13,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // In the future, we'll gather statistics here
         $stats = [
-            'mcp_actions' => 0, // MCPAction::count()
-            'active_servers' => 0, // MCPServer::where('status', 'active')->count()
+            'mcp_actions' => MCPAction::count(),
+            'active_servers' => MCPServer::where('status', 'active')->count(),
+            'total_servers' => MCPServer::count(),
             'integrations' => 0, // Future feature
         ];
         

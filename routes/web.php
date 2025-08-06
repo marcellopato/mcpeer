@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MCPActionController;
 use App\Http\Controllers\MCPServerController;
+use App\Livewire\MCPServerManager;
+use App\Livewire\MCPActionManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +18,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Backend API test route (working)
+Route::get('/api-test', function () {
+    return response()->json([
+        'status' => 'ok',
+        'message' => 'MCPeer Backend is operational',
+        'version' => '1.0.0',
+        'features' => [
+            'mcp_server_management' => true,
+            'action_configuration' => true,
+            'code_generation' => true,
+            'docker_integration' => true
+        ]
+    ]);
+});
+
 // Dashboard
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(['web']);
 
-// MCP Actions
+// MCP Livewire Routes  
+Route::get('/mcp/servers', MCPServerManager::class)->name('mcp.servers')->middleware(['web']);
+Route::get('/mcp/servers/{server}/actions', MCPActionManager::class)->name('mcp.server.actions')->middleware(['web']);
+
+// Legacy MCP Routes (keeping for API compatibility)
 Route::resource('actions', MCPActionController::class);
-
-// MCP Servers
 Route::resource('servers', MCPServerController::class);
 
 // API Routes for testing

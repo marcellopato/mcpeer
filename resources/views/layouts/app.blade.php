@@ -13,6 +13,7 @@
     
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
@@ -37,13 +38,13 @@
                                class="@if(request()->routeIs('dashboard')) border-primary-500 text-gray-900 dark:text-white @else border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 @endif border-b-2 px-1 pt-1 text-sm font-medium">
                                 Dashboard
                             </a>
-                            <a href="{{ route('actions.index') }}" 
-                               class="@if(request()->routeIs('actions.*')) border-primary-500 text-gray-900 dark:text-white @else border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 @endif border-b-2 px-1 pt-1 text-sm font-medium">
-                                MCP Actions
+                            <a href="{{ route('mcp.servers') }}" 
+                               class="@if(request()->routeIs('actions.*') || request()->routeIs('mcp.*')) border-primary-500 text-gray-900 dark:text-white @else border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 @endif border-b-2 px-1 pt-1 text-sm font-medium">
+                                MCP Manager
                             </a>
-                            <a href="{{ route('servers.index') }}" 
+            <a href="{{ route('servers.index') }}" 
                                class="@if(request()->routeIs('servers.*')) border-primary-500 text-gray-900 dark:text-white @else border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 @endif border-b-2 px-1 pt-1 text-sm font-medium">
-                                Servers
+                                API
                             </a>
                         </div>
                     </div>
@@ -78,5 +79,7 @@
             {{ $slot }}
         </main>
     </div>
+    
+    @livewireScripts
 </body>
 </html>
