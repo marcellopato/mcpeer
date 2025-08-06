@@ -11,6 +11,8 @@ class MCPServer extends Model
 {
     use HasFactory;
 
+    protected $table = 'mcp_servers';
+
     protected $fillable = [
         'name',
         'slug',
@@ -45,7 +47,7 @@ class MCPServer extends Model
      */
     public function actions(): HasMany
     {
-        return $this->hasMany(MCPAction::class);
+        return $this->hasMany(MCPAction::class, 'mcp_server_id');
     }
 
     /**

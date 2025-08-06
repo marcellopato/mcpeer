@@ -11,6 +11,8 @@ class MCPAction extends Model
 {
     use HasFactory;
 
+    protected $table = 'mcp_actions';
+
     protected $fillable = [
         'mcp_server_id',
         'name',

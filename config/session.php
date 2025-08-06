@@ -7,6 +7,26 @@ return [
     'lifetime' => env('SESSION_LIFETIME', 120),
     'expire_on_close' => false,
     'encrypt' => false,
+    
+    'stores' => [
+        'file' => [
+            'driver' => 'file',
+            'files' => storage_path('framework/sessions'),
+        ],
+        'database' => [
+            'driver' => 'database',
+            'table' => 'sessions',
+            'connection' => null,
+        ],
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+        ],
+        'array' => [
+            'driver' => 'array',
+        ],
+    ],
+    
     'files' => storage_path('framework/sessions'),
     'connection' => env('SESSION_CONNECTION'),
     'table' => 'sessions',
