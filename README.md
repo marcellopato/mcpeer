@@ -219,7 +219,33 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Wiki**: [Documentation and guides](https://github.com/marcellopato/mcpeer/wiki)
 - **Sponsors**: [Support MCPeer development](https://github.com/sponsors/marcellopato)
 
-### Support MCPeer 💖
+## Sponsors 💖
+
+MCPeer is supported by these amazing sponsors:
+
+### 🏢 Platform Sponsors ($500+/month)
+<!-- sponsors-platform-start -->
+*Be the first Platform Sponsor and help accelerate MCPeer development!*
+<!-- sponsors-platform-end -->
+
+### 🌱 Growth Partners ($100+/month)  
+<!-- sponsors-growth-start -->
+*Be the first Growth Partner and enable dedicated development time!*
+<!-- sponsors-growth-end -->
+
+### 🚀 Feature Sponsors ($25+/month)
+<!-- sponsors-feature-start -->
+*Be the first Feature Sponsor and accelerate new features!*
+<!-- sponsors-feature-end -->
+
+### ☕ Coffee Supporters ($5+/month)
+<!-- sponsors-coffee-start -->
+*Be the first Coffee Supporter and help cover development costs!*
+<!-- sponsors-coffee-end -->
+
+[**💖 Become a sponsor**](https://github.com/sponsors/marcellopato) and help make MCPeer better for everyone!
+
+### Support MCPeer �
 
 MCPeer is an open-source project that depends on community support for continued development and maintenance. If MCPeer helps you or your organization, consider supporting us:
 
@@ -230,6 +256,7 @@ MCPeer is an open-source project that depends on community support for continued
 - 📢 **Spread the word** in your developer community
 
 Your support helps us:
+
 - Maintain and improve MCPeer
 - Add new features and integrations  
 - Provide community support
