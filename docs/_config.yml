@@ -1,13 +1,11 @@
 title: MCPeer
 description: Visual platform for creating, configuring, and managing Model Context Protocol (MCP) servers
-baseurl: "/mcpeer"
-url: "https://marcellopato.github.io"
+baseurl: ""
+url: "https://marcellopato.github.io/mcpeer"
 
 # GitHub Pages configuration
 plugins:
   - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-seo-tag
 
 # Exclude files from processing
 exclude:
@@ -17,37 +15,6 @@ exclude:
   - docker/
   - vendor/
   - node_modules/
-
-# Include files and directories
-include:
-  - .htaccess
-  - _pages
-  - _posts
-
-# Collections
-collections:
-  pages:
-    output: true
-    permalink: /:name/
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
-
-# SEO settings
-author: MCPeer Community
-twitter:
-  username: mcpeer
-  card: summary_large_image
-
-social:
-  name: MCPeer
-  links:
-    - https://github.com/marcellopato/mcpeer
 
 # Logo and favicon
 logo: /images/logo-large.svg
