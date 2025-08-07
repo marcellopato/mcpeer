@@ -1,0 +1,41 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        "terminal.integrated.profiles.windows": {
+            "PowerShell": {
+                "source": "PowerShell",
+                "icon": "terminal-powershell"
+            },
+            "Command Prompt": {
+                "path": "cmd.exe",
+                "icon": "terminal-cmd"
+            }
+        },
+        "php.validate.executablePath": "php",
+        "intelephense.environment.phpVersion": "8.4.11",
+        "terminal.integrated.shellIntegration.enabled": true,
+        "terminal.integrated.shellIntegration.showWelcome": false,
+        "docker.defaultPlatform": "linux/amd64",
+        "files.exclude": {
+            "**/node_modules": true,
+            "**/vendor": true,
+            "**/.env": false
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "bmewburn.vscode-intelephense-client",
+            "bradlc.vscode-tailwindcss",
+            "ms-vscode.vscode-json",
+            "formulahendry.auto-rename-tag",
+            "ms-vscode.powershell",
+            "ms-vscode-remote.remote-containers",
+            "ms-azuretools.vscode-docker"
+        ]
+    }
+}
