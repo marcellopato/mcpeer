@@ -98,7 +98,7 @@
         <!-- Quick Actions -->
         <div class="mcpeer-card p-6 mb-8">
             <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Ações Rápidas</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <a href="{{ route('mcp.servers') }}" 
                    class="mcpeer-card-simple border-2 border-dashed border-yellow-300 dark:border-yellow-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-200 hover:shadow-md">
                     <div class="text-center">
@@ -122,6 +122,19 @@
                         </div>
                         <h4 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Novo Servidor</h4>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Configurar um novo servidor MCP</p>
+                    </div>
+                </a>
+
+                <a href="{{ route('context7.demo') }}" 
+                   class="mcpeer-card-simple border-2 border-blue-300 dark:border-blue-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-200 hover:shadow-md bg-blue-50 dark:bg-blue-900/20">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h4 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Context7 Demo</h4>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Veja um exemplo real de integração MCP</p>
                     </div>
                 </a>
                 

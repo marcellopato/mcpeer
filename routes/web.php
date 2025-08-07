@@ -96,6 +96,13 @@ Route::get('/mcp/servers/{server}/actions', MCPActionManager::class)->name('mcp.
 Route::resource('actions', MCPActionController::class);
 Route::resource('servers', MCPServerController::class);
 
+// Context7 Integration Demo
+Route::prefix('context7')->name('context7.')->group(function () {
+    Route::get('/demo', [App\Http\Controllers\Context7DemoController::class, 'index'])->name('demo');
+    Route::post('/demo/query', [App\Http\Controllers\Context7DemoController::class, 'demoQuery'])->name('demo.query');
+    Route::post('/demo/search', [App\Http\Controllers\Context7DemoController::class, 'demoSearch'])->name('demo.search');
+});
+
 // API Routes for testing
 Route::prefix('api')->group(function () {
     Route::post('/test-endpoint', [MCPActionController::class, 'testEndpoint'])->name('api.test-endpoint');
