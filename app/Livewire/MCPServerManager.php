@@ -11,6 +11,8 @@ class MCPServerManager extends Component
 {
     use WithPagination;
 
+    public $layout = 'components.layouts.app';
+
     public $showCreateForm = false;
     public $editingServer = null;
     public $name = '';

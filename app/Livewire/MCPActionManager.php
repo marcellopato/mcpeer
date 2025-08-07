@@ -11,6 +11,8 @@ class MCPActionManager extends Component
 {
     use WithPagination;
 
+    public $layout = 'components.layouts.app';
+
     public MCPServer $server;
     public $showCreateForm = false;
     public $editingAction = null;
