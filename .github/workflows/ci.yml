@@ -88,8 +88,8 @@ jobs:
     
     - name: Test Docker Compose Setup
       run: |
-        # Start the application with docker-compose
-        docker-compose up -d
+        # Start the application with docker compose
+        docker compose up -d
         
         # Wait for services to be ready
         sleep 30
@@ -98,4 +98,4 @@ jobs:
         curl -f http://localhost:8080 || exit 1
         
         # Cleanup
-        docker-compose down
+        docker compose down

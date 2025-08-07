@@ -1,3 +1,22 @@
+# Frontend build stage
+FROM node:18-alpine AS frontend-builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source files
+COPY resources ./resources
+COPY vite.config.js tailwind.config.js postcss.config.js ./
+
+# Build assets
+RUN npm run build
+
+# PHP application stage
 FROM php:8.2-fpm
 
 # Set working directory
@@ -12,9 +31,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libzip-dev \
-    nodejs \
-    npm
+    libzip-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -37,10 +54,8 @@ RUN git config --global --add safe.directory /var/www
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Install Node.js dependencies and build assets
-RUN npm config set registry https://registry.npmjs.org/ && \
-    npm config set strict-ssl false && \
-    npm ci && npm run build
+# Copy built assets from frontend stage
+COPY --from=frontend-builder /app/public/build /var/www/public/build
 
 # Change current user to www
 USER www-data
