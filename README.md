@@ -38,6 +38,7 @@ Built with a modern interface using **PHP + TailwindCSS** and containerized with
 - 🌙 **Dark mode support** based on user system preferences
 - 🔄 **Real-time API testing** and validation
 - 📚 **Comprehensive documentation** generation
+- 🚀 **Context7 Integration**: Pre-configured example showcasing Context7 documentation search capabilities
 
 ---
 
@@ -112,6 +113,32 @@ Built with a modern interface using **PHP + TailwindCSS** and containerized with
 5. **Access the application:**
    - Docker: `http://localhost:8080`
    - Local: `http://localhost:8000`
+
+### Context7 Integration Demo
+
+MCPeer includes a complete Context7 integration example to demonstrate real-world MCP server capabilities:
+
+1. **Set up the Context7 example:**
+
+   ```bash
+   # Using artisan command
+   docker-compose exec app php artisan setup:context7-example
+   
+   # Or manually run the seeder
+   docker-compose exec app php artisan db:seed Context7ExampleSeeder
+   ```
+
+2. **Access the demo:**
+   - Interactive Demo: `http://localhost:8080/context7/demo`
+   - Dashboard Link: Available from the main dashboard
+
+3. **Features demonstrated:**
+   - Documentation querying with AI-powered search
+   - Library search and comparison
+   - Streaming updates for real-time data
+   - Proper MCP action parameter validation
+
+The Context7 integration showcases how MCPeer can manage complex MCP servers with multiple action types and demonstrates best practices for MCP implementation.
 
 ---
 
@@ -189,8 +216,10 @@ To authorize GitHub Copilot to contribute:
 - [x] Docker configuration
 - [x] Laravel framework setup
 - [x] Frontend with TailwindCSS
-- [ ] MCP Actions CRUD
-- [ ] Server management interface
+- [x] MCP Actions CRUD
+- [x] Server management interface
+- [x] Context7 integration example
+- [x] Interactive demo interface
 
 ### Phase 2
 - [ ] API testing interface
