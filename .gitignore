@@ -4,6 +4,9 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/framework/cache/*
 /vendor
 .env
 .env.backup
@@ -32,3 +35,17 @@ docker-compose.override.yml
 
 # Logs
 *.log
+
+# Shell and system files
+.bash_history
+.cache/
+.config/
+.gitconfig
+.local/
+.npm/
+
+# Test files
+/public/phpinfo.php
+/public/laravel-test.php
+/public/request-test.php
+/public/test.php

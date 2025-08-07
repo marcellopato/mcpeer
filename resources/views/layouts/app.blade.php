@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>{{ $title ?? 'MCPeer' }} - {{ config('app.name', 'MCPeer') }}</title>
+    <title>@yield('title', 'MCPeer') - {{ config('app.name', 'MCPeer') }}</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -68,15 +68,15 @@
         
         <!-- Page Content -->
         <main class="flex-1">
-            @if(isset($header))
+            @hasSection('header')
                 <header class="bg-white dark:bg-gray-800 shadow-sm">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                        @yield('header')
                     </div>
                 </header>
             @endif
             
-            {{ $slot }}
+            @yield('content')
         </main>
     </div>
     

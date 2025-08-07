@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Force session configuration
+        if ($this->app->runningInConsole() === false) {
+            $this->app['config']['session.driver'] = config('session.driver', 'file');
+            $this->app['config']['session.path'] = storage_path('framework/sessions');
+        }
     }
 }

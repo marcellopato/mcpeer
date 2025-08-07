@@ -18,9 +18,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Debug route
+Route::get('/debug', function () {
+    try {
+        return response()->json([
+            'php_version' => PHP_VERSION,
+            'laravel_version' => app()->version(),
+            'session_driver' => config('session.driver'),
+            'session_config' => config('session'),
+            'app_key' => config('app.key') ? 'SET' : 'NOT SET',
+            'app_env' => config('app.env'),
+            'database' => [
+                'connection' => config('database.default'),
+                'host' => config('database.connections.mysql.host'),
+            ],
+            'storage_permissions' => [
+                'sessions_writable' => is_writable(storage_path('framework/sessions')),
+                'storage_writable' => is_writable(storage_path()),
+            ]
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+});
+
 // Simple test route
 Route::get('/test', function () {
     return 'MCPeer está funcionando!';
+});
+
+// Session test route
+Route::get('/session-test', function () {
+    try {
+        $session = request()->session();
+        $session->put('test_key', 'test_value');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Sessão funcionando corretamente',
+            'session_id' => $session->getId(),
+            'test_value' => $session->get('test_key')
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
 });
 
 // Backend API test route (working)
