@@ -70,7 +70,7 @@ jobs:
         DB_PASSWORD: ""
         REDIS_HOST: 127.0.0.1
         REDIS_PORT: 6379
-      run: php artisan test --coverage
+      run: ./vendor/bin/phpunit --coverage-text
 
     - name: PHP Code Style Check
       run: ./vendor/bin/pint --test
@@ -86,10 +86,16 @@ jobs:
     - name: Build Docker Image
       run: docker build -t mcpeer:latest .
     
-    - name: Test Docker Image
+    - name: Test Docker Compose Setup
       run: |
-        docker run -d --name test-mcpeer -p 8080:80 mcpeer:latest
-        sleep 10
+        # Start the application with docker-compose
+        docker-compose up -d
+        
+        # Wait for services to be ready
+        sleep 30
+        
+        # Test if the application is responding
         curl -f http://localhost:8080 || exit 1
-        docker stop test-mcpeer
-        docker rm test-mcpeer
+        
+        # Cleanup
+        docker-compose down

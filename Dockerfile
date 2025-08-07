@@ -31,14 +31,16 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Install Node.js dependencies and build assets
-RUN npm install && npm run build
-
 # Configure Git safe directory
 RUN git config --global --add safe.directory /var/www
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Install Node.js dependencies and build assets
+RUN npm config set registry https://registry.npmjs.org/ && \
+    npm config set strict-ssl false && \
+    npm ci && npm run build
 
 # Change current user to www
 USER www-data
