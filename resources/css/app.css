@@ -2,43 +2,149 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for MCPeer */
+/* MCPeer Custom Styles - Following institutional design */
+
+/* Color System */
+:root {
+    --mcpeer-yellow: #FCD34D;
+    --mcpeer-yellow-dark: #F59E0B;
+    --mcpeer-yellow-darker: #D97706;
+    --mcpeer-gray-dark: #374151;
+    --mcpeer-gray-light: #9CA3AF;
+}
+
+/* Dark mode transitions */
 .dark-mode-transition {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Logo and branding styles */
+/* Gradient backgrounds matching institutional design */
 .mcpeer-gradient {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
 }
 
-/* Form and card styles with dark mode support */
-.card {
-    @apply bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700;
+.mcpeer-gradient-text {
+    background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.form-input {
-    @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600;
+.code-bg {
+    background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
 }
 
-/* MCP specific styling */
-.mcp-action {
-    @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all;
+/* Hero animation for special elements */
+.hero-animation {
+    animation: float 3s ease-in-out infinite;
 }
 
-.api-endpoint {
-    @apply bg-gray-100 dark:bg-gray-700 p-4 rounded-lg font-mono text-sm;
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Card system following MCPeer design */
+.mcpeer-card {
+    @apply bg-white dark:bg-gray-800 shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl;
+}
+
+.mcpeer-card-simple {
+    @apply bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-all duration-300;
+}
+
+/* Button system */
+.mcpeer-btn-primary {
+    @apply bg-yellow-400 text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors duration-200 shadow-sm hover:shadow-md;
+}
+
+.mcpeer-btn-secondary {
+    @apply bg-gray-900 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors duration-200 shadow-sm hover:shadow-md;
+}
+
+.mcpeer-btn-outline {
+    @apply bg-white text-gray-900 px-6 py-3 rounded-md font-medium border border-gray-900 hover:bg-gray-50 transition-colors duration-200;
+}
+
+.mcpeer-btn-danger {
+    @apply bg-red-600 text-white px-4 py-2 rounded-md font-medium hover:bg-red-700 transition-colors duration-200;
+}
+
+/* Form inputs following design system */
+.mcpeer-input {
+    @apply w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-200;
+}
+
+.mcpeer-textarea {
+    @apply w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-200 resize-vertical;
+}
+
+.mcpeer-select {
+    @apply w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-200;
+}
+
+/* MCP Action styling */
+.mcp-action-query {
+    @apply bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.mcp-action-mutation {
+    @apply bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.mcp-action-stream {
+    @apply bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+/* Icon backgrounds like in institutional site */
+.mcpeer-icon-bg {
+    @apply w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-gray-900;
+}
+
+.mcpeer-icon-bg-sm {
+    @apply w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center text-gray-900;
 }
 
 /* Status indicators */
-.status-active {
-    @apply bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100;
+.status-online {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100;
 }
 
-.status-inactive {
-    @apply bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100;
+.status-offline {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100;
 }
 
-.status-pending {
-    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100;
+.status-testing {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100;
+}
+
+/* Code blocks */
+.mcpeer-code {
+    @apply bg-gray-900 dark:bg-gray-800 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto;
+}
+
+/* Navigation active state */
+.mcpeer-nav-active {
+    @apply border-yellow-400 text-gray-900 dark:text-white;
+}
+
+.mcpeer-nav-inactive {
+    @apply border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300;
+}
+
+/* Table styling */
+.mcpeer-table {
+    @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+}
+
+.mcpeer-table th {
+    @apply px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider;
+}
+
+.mcpeer-table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100;
+}
+
+.mcpeer-table tr {
+    @apply bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150;
 }
