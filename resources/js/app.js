@@ -1,9 +1,7 @@
 import './bootstrap';
-import Alpine from 'alpinejs';
 
-// Initialize Alpine.js for reactive components
-window.Alpine = Alpine;
-Alpine.start();
+// Alpine.js is handled by Livewire automatically
+// Removed: import Alpine from 'alpinejs'; to avoid conflicts
 
 // Dark mode toggle functionality
 function initDarkMode() {
